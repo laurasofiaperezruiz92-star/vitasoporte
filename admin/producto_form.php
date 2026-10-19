@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($nombre === '' || $talla === '' || !$idCat) {
         $error = 'Nombre, talla y categoría son obligatorios.';
+    } elseif ($precio < 0) {
+        $error = 'El precio no puede ser negativo.';
     } elseif ($id > 0) {
         $stmt = $conexion->prepare(
             'UPDATE producto SET nombre=?, talla=?, precio=?, descripcion=?, disponible=?, foto_url=?, id_categoria=? WHERE id_producto=?'
@@ -64,7 +66,9 @@ require __DIR__ . '/../includes/header_admin.php';
     <label>Tallas disponibles (separadas por coma, el cliente elige una en el catálogo)
         <input name="talla" required placeholder="S,M,L,XL" value="<?= e($producto['talla'] ?? '') ?>">
     </label>
-    <label>Precio <input type="number" step="100" min="0" name="precio" required value="<?= e((string)($producto['precio'] ?? '0')) ?>"></label>
+    <label>Precio (puedes modificarlo al antojo cuando quieras; los pedidos ya realizados conservan el precio del momento de la compra)
+        <input type="number" step="100" min="0" name="precio" required value="<?= e((string)($producto['precio'] ?? '0')) ?>">
+    </label>
     <label>Descripción <textarea name="descripcion" rows="3"><?= e($producto['descripcion'] ?? '') ?></textarea></label>
     <label>Ruta foto (ej. img/prod-faja-lumbar.jpg)
         <input name="foto_url" placeholder="img/nombre.jpg" value="<?= e($producto['foto_url'] ?? '') ?>">

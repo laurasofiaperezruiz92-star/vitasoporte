@@ -12,6 +12,21 @@ if (isset($_GET['toggle'])) {
     redirect('productos.php');
 }
 
+if (isset($_POST['accion']) && $_POST['accion'] === 'precio') {
+    $id = (int)($_POST['id_producto'] ?? 0);
+    $precio = (float)($_POST['precio'] ?? -1);
+    if ($id <= 0 || $precio < 0) {
+        flash('error', 'Precio no válido: debe ser un número mayor o igual a 0.');
+    } else {
+        $stmt = $conexion->prepare('UPDATE producto SET precio = ? WHERE id_producto = ?');
+        $stmt->bind_param('di', $precio, $id);
+        $stmt->execute();
+        $prod = obtenerProducto($conexion, $id);
+        flash('ok', 'Precio actualizado: ' . ($prod['nombre'] ?? 'producto') . ' ahora cuesta ' . formatearPrecio($precio) . '. Ya se ve en el catálogo.');
+    }
+    redirect('productos.php');
+}
+
 if (isset($_POST['accion']) && $_POST['accion'] === 'eliminar') {
     $id = (int)($_POST['id_producto'] ?? 0);
     try {
@@ -34,7 +49,10 @@ $productos = $conexion->query(
 require __DIR__ . '/../includes/header_admin.php';
 ?>
 <div class="toolbar">
-    <h2>Gestión de productos</h2>
+    <div>
+        <h2>Gestión de productos</h2>
+        <p class="meta">Modifica el precio al antojo en la misma tabla y guarda: se refleja de una en el catálogo y la bolsa. Los pedidos anteriores conservan su precio.</p>
+    </div>
     <a class="btn btn-primary" href="producto_form.php">+ Nuevo</a>
 </div>
 
@@ -50,7 +68,17 @@ require __DIR__ . '/../includes/header_admin.php';
             <td><?= e($p['nombre']) ?></td>
             <td><?= e($p['talla']) ?></td>
             <td><?= e($p['categoria_nombre']) ?></td>
-            <td><?= e(formatearPrecio($p['precio'])) ?></td>
+            <td>
+                <form class="precio-form" method="post" title="Cambia el precio y guarda: se refleja ya en el catálogo">
+                    <input type="hidden" name="accion" value="precio">
+                    <input type="hidden" name="id_producto" value="<?= (int)$p['id_producto'] ?>">
+                    <span aria-hidden="true">$</span>
+                    <input type="number" name="precio" min="0" step="100" required
+                           value="<?= (int)$p['precio'] ?>" aria-label="Precio de <?= e($p['nombre']) ?>">
+                    <button class="btn btn-sm btn-primary" type="submit">Guardar precio</button>
+                </form>
+                <small class="meta">Actual: <?= e(formatearPrecio($p['precio'])) ?></small>
+            </td>
             <td>
                 <a href="?toggle=<?= (int)$p['id_producto'] ?>">
                     <span class="<?= (int)$p['disponible'] ? 'badge-ok' : 'badge-off' ?>">
