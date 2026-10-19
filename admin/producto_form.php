@@ -61,7 +61,9 @@ require __DIR__ . '/../includes/header_admin.php';
         <input type="hidden" name="id_producto" value="<?= (int)$producto['id_producto'] ?>">
     <?php endif; ?>
     <label>Nombre <input name="nombre" required value="<?= e($producto['nombre'] ?? '') ?>"></label>
-    <label>Talla <input name="talla" required value="<?= e($producto['talla'] ?? '') ?>"></label>
+    <label>Tallas disponibles (separadas por coma, el cliente elige una en el catálogo)
+        <input name="talla" required placeholder="S,M,L,XL" value="<?= e($producto['talla'] ?? '') ?>">
+    </label>
     <label>Precio <input type="number" step="100" min="0" name="precio" required value="<?= e((string)($producto['precio'] ?? '0')) ?>"></label>
     <label>Descripción <textarea name="descripcion" rows="3"><?= e($producto['descripcion'] ?? '') ?></textarea></label>
     <label>Ruta foto (ej. img/prod-faja-lumbar.jpg)

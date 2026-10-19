@@ -7,7 +7,8 @@
         </div>
         <div>
             WhatsApp: +<?= e(WHATSAPP_NUMERO) ?><br>
-            &copy; <?= date('Y') ?> VitaSoporte · Pedido de un producto a la vez
+            Tienda física: <a href="<?= e(TIENDA_MAPS_URL) ?>" target="_blank" rel="noopener"><?= e(TIENDA_UBICACION) ?></a><br>
+            &copy; <?= date('Y') ?> VitaSoporte · Compra varios productos en un solo pedido
         </div>
     </div>
 </footer>

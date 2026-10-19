@@ -13,7 +13,7 @@ $fullBleed = !empty($fullBleed);
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title><?= e($titulo ?? APP_NOMBRE) ?> · <?= e(APP_NOMBRE) ?></title>
     <meta name="description" content="<?= e(APP_SLOGAN) ?>">
-    <meta name="theme-color" content="#6b2340">
+    <meta name="theme-color" content="#493D37">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,6 +37,10 @@ $fullBleed = !empty($fullBleed);
             <a href="index.php" class="<?= $paginaActual === 'inicio' ? 'is-active' : '' ?>">Inicio</a>
             <a href="catalogo.php" class="<?= $paginaActual === 'catalogo' ? 'is-active' : '' ?>">Catálogo</a>
             <a href="pedido.php" class="<?= $paginaActual === 'pedido' ? 'is-active' : '' ?>">Pedir</a>
+            <a href="bolsa.php" class="bolsa-link <?= $paginaActual === 'bolsa' ? 'is-active' : '' ?>" aria-label="Bolsa de compras">
+                <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.1a1.8 1.8 0 0 1-1.8 1.6H8a1.8 1.8 0 0 1-1.8-1.6L5 8Z"/><path d="M8.5 10V6.5a3.5 3.5 0 0 1 7 0V10"/></svg>
+                Bolsa<?php $nBolsa = bolsaCantidadTotal(); ?><?php if ($nBolsa > 0): ?><span class="bolsa-count"><?= $nBolsa ?></span><?php endif; ?>
+            </a>
             <a href="admin/login.php">Admin</a>
         </nav>
     </div>

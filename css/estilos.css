@@ -1,19 +1,27 @@
 :root {
-  --bordeaux: #6b2340;
-  --bordeaux-deep: #3f1226;
-  --bordeaux-mid: #8a3a58;
-  --rosa: #f3b8c9;
-  --rosa-mist: #f8e4eb;
-  --pearl: #faf6f7;
-  --ink: #2c1822;
-  --muted: #7d5c68;
-  --line: #ebcfd9;
-  --white: #ffffff;
+  /* Paleta nude / café (definitiva) */
+  --nude: #F5E9DF;
+  --champagne: #E2C8B5;
+  --rosa: #C9A7A0;
+  --cafe: #493D37;
+  --cafe-deep: #302722;
+  --cafe-mid: #65564E;
+  --perla: #FAF6F2;
+  --ink: #292421;
+  --muted: #8A7B72;
+  --line: #E5DAD1;
+  --white: #FFFFFF;
+  /* Alias históricos: el resto del CSS usa estos nombres */
+  --bordeaux: var(--cafe);
+  --bordeaux-deep: var(--cafe-deep);
+  --bordeaux-mid: var(--cafe-mid);
+  --rosa-mist: var(--nude);
+  --pearl: var(--perla);
   --ok: #1f6b4a;
   --error: #9b2c2c;
   --wa: #1f9e55;
   --radius: 18px;
-  --shadow: 0 18px 40px rgba(63, 18, 38, 0.1);
+  --shadow: 0 18px 40px rgba(48, 39, 34, 0.12);
   --font-display: "Marcellus", "Times New Roman", serif;
   --font-body: "Outfit", system-ui, sans-serif;
   --pad-x: clamp(1rem, 3.5vw, 1.5rem);
@@ -33,9 +41,9 @@ body {
   font-family: var(--font-body);
   color: var(--ink);
   background:
-    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(243, 184, 201, 0.45), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(107, 35, 64, 0.08), transparent 50%),
-    linear-gradient(180deg, #fff9fb 0%, var(--pearl) 40%, #f7eef2 100%);
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(201, 167, 160, 0.45), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(73, 61, 55, 0.08), transparent 50%),
+    linear-gradient(180deg, #FAF6F2 0%, var(--pearl) 40%, #F5E9DF 100%);
   min-height: 100vh;
   min-height: 100dvh;
   line-height: 1.55;
@@ -69,7 +77,7 @@ h1, h2, h3, .brand-text strong {
   background: rgba(250, 246, 247, 0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(235, 207, 217, 0.7);
+  border-bottom: 1px solid rgba(229, 218, 209, 0.7);
 }
 
 .nav-bar {
@@ -103,7 +111,7 @@ h1, h2, h3, .brand-text strong {
   place-items: center;
   font-family: var(--font-display);
   font-size: 1.3rem;
-  box-shadow: 0 8px 18px rgba(107, 35, 64, 0.25);
+  box-shadow: 0 8px 18px rgba(73, 61, 55, 0.25);
 }
 
 .brand-text {
@@ -203,7 +211,7 @@ main.container {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(105deg, rgba(63, 18, 38, 0.88) 0%, rgba(63, 18, 38, 0.45) 48%, rgba(63, 18, 38, 0.2) 100%),
+    linear-gradient(105deg, rgba(48, 39, 34, 0.88) 0%, rgba(48, 39, 34, 0.45) 48%, rgba(48, 39, 34, 0.2) 100%),
     url("../img/hero.jpg") center/cover no-repeat;
   transform: scale(1.04);
   animation: softZoom 18s ease-in-out infinite alternate;
@@ -347,7 +355,7 @@ main.container {
 .btn-primary {
   background: var(--bordeaux);
   color: white;
-  box-shadow: 0 10px 22px rgba(107, 35, 64, 0.22);
+  box-shadow: 0 10px 22px rgba(73, 61, 55, 0.22);
 }
 .btn-primary:hover { background: var(--bordeaux-deep); }
 .btn-light { background: white; color: var(--bordeaux); }
@@ -503,6 +511,72 @@ main.container {
   color: var(--muted);
 }
 
+/* —— Bolsa de compras / tallas / categorías / ubicación —— */
+.bolsa-link { display: inline-flex; align-items: center; gap: 0.35rem; }
+.bolsa-count {
+  background: var(--cafe); color: var(--white);
+  min-width: 1.35rem; height: 1.35rem; border-radius: 999px;
+  display: inline-grid; place-items: center;
+  font-size: 0.75rem; font-weight: 700; padding: 0 0.3rem;
+}
+.talla-form { display: grid; gap: 0.55rem; margin-top: auto; }
+.talla-label { font-size: 0.82rem; font-weight: 700; color: var(--cafe); display: grid; gap: 0.4rem; }
+.talla-opciones { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.talla-chip { cursor: pointer; }
+.talla-chip input { position: absolute; opacity: 0; pointer-events: none; }
+.talla-chip span {
+  display: inline-grid; place-items: center;
+  min-width: 2.6rem; min-height: 2.4rem; padding: 0.35rem 0.6rem;
+  border: 1.5px solid var(--line); border-radius: 999px;
+  background: var(--white); color: var(--cafe-mid); font-weight: 700; font-size: 0.85rem;
+  transition: all 0.15s;
+}
+.talla-chip input:checked + span {
+  background: var(--cafe); border-color: var(--cafe); color: var(--white);
+}
+.talla-chip input:focus-visible + span { outline: 2px solid var(--rosa); outline-offset: 2px; }
+.bolsa-lista { display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
+.bolsa-item {
+  display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: center;
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 0.8rem; box-shadow: var(--shadow);
+}
+.bolsa-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 12px; flex-shrink: 0; }
+.bolsa-info { display: flex; flex-direction: column; flex: 1 1 180px; min-width: 0; }
+.bolsa-info strong { color: var(--cafe-deep); font-family: var(--font-display); font-size: 1.05rem; }
+.bolsa-info span { color: var(--muted); font-size: 0.88rem; }
+.bolsa-info .bolsa-subtotal { color: var(--cafe); font-weight: 800; }
+.bolsa-cantidad { font-size: 0.8rem; font-weight: 700; color: var(--cafe); }
+.bolsa-cantidad input {
+  width: 76px; display: block; margin-top: 0.25rem;
+  padding: 0.55rem 0.6rem; border-radius: 10px;
+  border: 1px solid var(--line); font: inherit; min-height: 44px; background: var(--perla);
+}
+.bolsa-acciones { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.bolsa-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.9rem 0.2rem; border-top: 2px dashed var(--line); font-size: 1.05rem;
+}
+.bolsa-total strong { font-family: var(--font-display); font-size: 1.5rem; color: var(--cafe); }
+.resumen-linea { display: flex; justify-content: space-between; gap: 1rem; padding: 0.35rem 0; color: var(--cafe-deep); }
+.resumen-linea em { color: var(--muted); font-style: normal; font-weight: 600; }
+.resumen-total { border-top: 1px dashed var(--line); margin-top: 0.4rem; padding-top: 0.6rem; font-size: 1.08rem; }
+.success-items { text-align: left; margin: 0.5rem auto 0.75rem; max-width: 26rem; color: var(--cafe-deep); }
+.funcion-img {
+  width: 100%; aspect-ratio: 16/10; object-fit: cover;
+  border-radius: 12px; margin-bottom: 0.7rem; background: var(--nude);
+}
+.ubicacion-card {
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(1rem, 3vw, 1.4rem); box-shadow: var(--shadow);
+}
+.ubicacion-card strong { font-family: var(--font-display); font-size: 1.25rem; color: var(--cafe-deep); }
+.ubicacion-card p { color: var(--muted); max-width: 34rem; }
+.ubicacion-acciones { display: flex; gap: 0.55rem; flex-wrap: wrap; }
+.cat-thumb { width: 64px; height: 48px; object-fit: cover; border-radius: 8px; background: var(--nude); }
+.cat-sin-img { color: var(--muted); font-size: 0.82rem; }
+
 /* —— Pedido —— */
 .pedido-layout {
   display: grid;
@@ -555,7 +629,7 @@ main.container {
   border: 1px solid var(--line);
   border-radius: 12px;
   font: inherit;
-  background: #fffcfd;
+  background: #FAF6F2;
   appearance: none;
   -webkit-appearance: none;
 }
@@ -633,7 +707,7 @@ main.container {
 /* —— Admin —— */
 .admin-body {
   background:
-    radial-gradient(ellipse 70% 40% at 0% 0%, rgba(243, 184, 201, 0.25), transparent 50%),
+    radial-gradient(ellipse 70% 40% at 0% 0%, rgba(201, 167, 160, 0.25), transparent 50%),
     var(--pearl);
 }
 
@@ -646,7 +720,7 @@ main.container {
 }
 .admin-header .brand-text strong,
 .admin-header .brand-text small,
-.admin-nav a { color: #f8e6ec; }
+.admin-nav a { color: #F5E9DF; }
 .admin-header .brand-mark {
   background: var(--rosa);
   color: var(--bordeaux-deep);
@@ -662,7 +736,7 @@ main.container {
   background: rgba(255, 255, 255, 0.14);
   color: white;
 }
-.nav-salir { color: #ffb4c4 !important; }
+.nav-salir { color: #E2C8B5 !important; }
 
 .metricas {
   display: grid;
@@ -749,7 +823,7 @@ td img.thumb {
   place-items: center;
   padding: clamp(1.25rem, 4vw, 2rem) var(--pad-x);
   background:
-    linear-gradient(135deg, rgba(63, 18, 38, 0.92), rgba(107, 35, 64, 0.75)),
+    linear-gradient(135deg, rgba(48, 39, 34, 0.92), rgba(73, 61, 55, 0.75)),
     url("../img/lifestyle-estudio.jpg") center/cover;
 }
 
@@ -869,7 +943,7 @@ td img.thumb {
     background: linear-gradient(160deg, var(--bordeaux-deep), var(--bordeaux));
     border-color: rgba(255, 255, 255, 0.18);
   }
-  .admin-header .nav-links a { color: #f8e6ec; }
+  .admin-header .nav-links a { color: #F5E9DF; }
   .admin-header .nav-links a.is-active,
   .admin-header .nav-links a:hover {
     background: rgba(255, 255, 255, 0.16);
@@ -908,7 +982,7 @@ td img.thumb {
   }
   .hero-bleed::before {
     background:
-      linear-gradient(180deg, rgba(63, 18, 38, 0.55) 0%, rgba(63, 18, 38, 0.88) 70%),
+      linear-gradient(180deg, rgba(48, 39, 34, 0.55) 0%, rgba(48, 39, 34, 0.88) 70%),
       url("../img/hero.jpg") center/cover no-repeat;
   }
 

@@ -11,9 +11,12 @@ $totales = [
 ];
 
 $recientes = $conexion->query(
-    'SELECT pe.fecha, pe.nombre_cliente, pr.nombre AS producto
+    'SELECT pe.fecha, pe.nombre_cliente, pe.total,
+            GROUP_CONCAT(CONCAT(pr.nombre, " (", d.talla, ") x", d.cantidad) SEPARATOR ", ") AS productos
      FROM pedido pe
-     JOIN producto pr ON pr.id_producto = pe.id_producto
+     JOIN pedido_detalle d ON d.id_pedido = pe.id_pedido
+     JOIN producto pr ON pr.id_producto = d.id_producto
+     GROUP BY pe.id_pedido
      ORDER BY pe.fecha DESC
      LIMIT 5'
 )->fetch_all(MYSQLI_ASSOC);
@@ -40,17 +43,18 @@ require __DIR__ . '/../includes/header_admin.php';
 <div class="toolbar"><h3>Últimos pedidos</h3></div>
 <div class="tabla-wrap">
 <table>
-    <thead><tr><th>Fecha</th><th>Cliente</th><th>Producto</th></tr></thead>
+    <thead><tr><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Total</th></tr></thead>
     <tbody>
     <?php foreach ($recientes as $r): ?>
         <tr>
             <td><?= e($r['fecha']) ?></td>
             <td><?= e($r['nombre_cliente']) ?></td>
-            <td><?= e($r['producto']) ?></td>
+            <td><?= e($r['productos']) ?></td>
+            <td><?= e(formatearPrecio($r['total'])) ?></td>
         </tr>
     <?php endforeach; ?>
     <?php if (!$recientes): ?>
-        <tr><td colspan="3">Sin pedidos aún.</td></tr>
+        <tr><td colspan="4">Sin pedidos aún.</td></tr>
     <?php endif; ?>
     </tbody>
 </table>

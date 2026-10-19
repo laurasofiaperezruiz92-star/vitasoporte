@@ -53,7 +53,7 @@ require __DIR__ . '/includes/header.php';
         <?php if ($catNombre): ?>
             <span class="filtro-activo">Función: <?= e($catNombre) ?></span>
         <?php else: ?>
-            <p class="meta">Elige un producto y continúa al pedido. Un artículo por vez.</p>
+            <p class="meta">Elige tu talla, agrega a la bolsa todos los productos que quieras y confirma un solo pedido.</p>
         <?php endif; ?>
     </div>
 </section>
@@ -77,13 +77,29 @@ require __DIR__ . '/includes/header.php';
         </div>
         <div class="product-body">
             <h3><?= e($p['nombre']) ?></h3>
-            <p class="meta"><?= e($p['categoria_nombre']) ?> · Talla <?= e($p['talla']) ?></p>
+            <p class="meta"><?= e($p['categoria_nombre']) ?></p>
             <p class="precio"><?= e(formatearPrecio($p['precio'])) ?></p>
             <p class="meta"><?= e(mb_strimwidth((string)$p['descripcion'], 0, 95, '…')) ?></p>
-            <div class="product-actions">
-                <a class="btn btn-primary btn-sm" href="pedido.php?producto=<?= (int)$p['id_producto'] ?>">Pedir este</a>
-                <a class="btn btn-wa btn-sm" href="<?= e(whatsappUrl(mensajeWhatsAppProducto($p))) ?>" target="_blank" rel="noopener">WhatsApp</a>
-            </div>
+            <form class="talla-form" method="post" action="bolsa.php">
+                <input type="hidden" name="accion" value="agregar">
+                <input type="hidden" name="id_producto" value="<?= (int)$p['id_producto'] ?>">
+                <input type="hidden" name="volver" value="catalogo.php<?= $_SERVER['QUERY_STRING'] ? '?' . e($_SERVER['QUERY_STRING']) : '' ?>">
+                <label class="talla-label">Talla
+                    <span class="talla-opciones" role="radiogroup" aria-label="Talla de <?= e($p['nombre']) ?>">
+                        <?php foreach (tallasDeProducto($p) as $iT => $t): ?>
+                            <label class="talla-chip">
+                                <input type="radio" name="talla" value="<?= e($t) ?>" <?= $iT === 0 ? 'checked' : '' ?>>
+                                <span><?= e($t) ?></span>
+                            </label>
+                        <?php endforeach; ?>
+                    </span>
+                </label>
+                <div class="product-actions">
+                    <button class="btn btn-primary btn-sm" type="submit">Agregar a la bolsa</button>
+                    <button class="btn btn-ghost btn-sm" type="submit" name="destino" value="bolsa">Pedir ya</button>
+                    <a class="btn btn-wa btn-sm" href="<?= e(whatsappUrl(mensajeWhatsAppProducto($p))) ?>" target="_blank" rel="noopener">WhatsApp</a>
+                </div>
+            </form>
         </div>
     </article>
 <?php endforeach; ?>

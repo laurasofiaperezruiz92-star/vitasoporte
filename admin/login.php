@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#3f1226">
+    <meta name="theme-color" content="#302722">
     <title>Login · VitaSoporte</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,10 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
     <?php if ($error): ?><div class="alert alert-error"><?= e($error) ?></div><?php endif; ?>
     <form method="post" class="form login-form">
-        <label>Correo <input type="email" name="correo" required value="<?= e($_POST['correo'] ?? 'admin@demo.com') ?>"></label>
-        <label>Contraseña <input type="password" name="clave" required value="<?= $_SERVER['REQUEST_METHOD'] === 'POST' ? '' : 'Admin123!' ?>"></label>
+        <label>Correo <input type="email" name="correo" required value="<?= e($_POST['correo'] ?? 'vitasoporte4@gmail.com') ?>"></label>
+        <label>Contraseña <input type="password" name="clave" required value="<?= $_SERVER['REQUEST_METHOD'] === 'POST' ? '' : 'vitasoporte2008' ?>"></label>
         <button class="btn btn-primary" type="submit">Ingresar</button>
-        <p class="meta">Demo: admin@demo.com / Admin123!</p>
+        <p class="meta">Acceso: vitasoporte4@gmail.com / vitasoporte2008</p>
         <p><a href="../index.php">← Volver al sitio</a></p>
     </form>
 </div>
