@@ -1,0 +1,35 @@
+VitaSoporte — sitio listo para exportar
+======================================
+
+CÓMO VERLO (importante)
+-----------------------
+1. Abre la carpeta vitasoporte
+2. Haz doble clic en index.html
+   O en Terminal:
+   cd /Users/louis/Documentos/vitasoporte
+   python3 -m http.server 8765
+   Luego abre: http://localhost:8765
+
+El menú usa anclas (#inicio, #productos, #nosotros, #ubicacion)
+dentro de index.html — así SÍ funciona al abrir el archivo.
+
+Archivos
+--------
+  index.html              → Sitio completo (usa este)
+  productos.html          → Redirige a #productos
+  nosotros.html           → Redirige a #nosotros
+  ubicacion.html          → Redirige a #ubicacion
+  styles.css
+  productos.js            → Filtros del catálogo
+  assets/productos/*.jpg  → Fotos de referencia (fajas / compresión)
+
+Exportar / publicar
+-------------------
+Comprime toda la carpeta o súbela a tu hosting.
+Mantén la carpeta assets/ junto a index.html.
+
+Personalizar
+------------
+- Cambia dirección y WhatsApp en la sección #ubicacion
+- Sustituye las fotos en assets/productos/ por fotos reales de tus fajas
+  (mismo nombre de archivo, o actualiza el src="" en index.html)

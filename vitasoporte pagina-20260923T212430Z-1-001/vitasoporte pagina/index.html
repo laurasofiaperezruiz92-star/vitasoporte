@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VitaSoporte — Soporte que te impulsa</title>
+  <meta name="description" content="VitaSoporte: fajas y prendas de compresión para hombres y mujeres. Comodidad, bienestar y confianza." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#inicio">Vita<span>Soporte</span></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#ubicacion">Mi ubicación</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="hero">
+      <div class="hero__media" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__brand">VitaSoporte</p>
+        <h1>Soporte que te impulsa</h1>
+        <p class="hero__lead">Hoy, bienestar que se nota. Fajas y prendas de compresión para hombres y mujeres.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#productos">Ver productos</a>
+          <a class="btn btn--ghost" href="#nosotros">Conócenos</a>
+        </div>
+  
+    </section>
+
+    <!-- PRODUCTOS -->
+    <section id="productos" class="section catalog-section">
+      <header class="page-hero catalog-hero">
+        <p class="page-hero__brand">VitaSoporte</p>
+        <h2>Productos</h2>
+        <p class="page-hero__lead">
+          Fajas y prendas de compresión para hombres y mujeres: comodidad, bienestar y confianza.
+        </p>
+      </header>
+
+      <div class="catalog-layout">
+        <aside class="catalog-filters" aria-label="Filtros del catálogo">
+          <div class="filters-head">
+            <h3>Filtros</h3>
+            <button type="button" class="filters-clear" id="clearFilters">Limpiar</button>
+          </div>
+
+          <label class="filter-search">
+            <span>Buscar</span>
+            <input type="search" id="searchInput" placeholder="Nombre del producto…" autocomplete="off" />
+          </label>
+
+          <fieldset>
+            <legend>Categoría</legend>
+            <label><input type="checkbox" name="categoria" value="abdominal" /> Abdominal</label>
+            <label><input type="checkbox" name="categoria" value="lumbar" /> Lumbar</label>
+            <label><input type="checkbox" name="categoria" value="deportiva" /> Deportiva</label>
+            <label><input type="checkbox" name="categoria" value="postparto" /> Postparto</label>
+            <label><input type="checkbox" name="categoria" value="chaleco" /> Chaleco</label>
+            <label><input type="checkbox" name="categoria" value="short" /> Short / Top</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Género</legend>
+            <label><input type="checkbox" name="genero" value="mujer" /> Mujer</label>
+            <label><input type="checkbox" name="genero" value="hombre" /> Hombre</label>
+            <label><input type="checkbox" name="genero" value="unisex" /> Unisex</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Uso</legend>
+            <label><input type="checkbox" name="uso" value="diario" /> Día a día</label>
+            <label><input type="checkbox" name="uso" value="deporte" /> Actividad física</label>
+          </fieldset>
+
+          <label class="filter-sort">
+            <span>Ordenar por</span>
+            <select id="sortSelect">
+              <option value="nombre-asc">Nombre (A–Z)</option>
+              <option value="nombre-desc">Nombre (Z–A)</option>
+              <option value="precio-asc">Precio (menor a mayor)</option>
+              <option value="precio-desc">Precio (mayor a menor)</option>
+            </select>
+          </label>
+        </aside>
+
+        <div class="catalog-results" aria-live="polite">
+          <div class="catalog-toolbar">
+            <p id="resultsCount">Mostrando 10 productos</p>
+          </div>
+
+          <div class="catalog-grid" id="productGrid">
+            <article class="catalog-card" data-id="1" data-nombre="Faja abdominal firme" data-categoria="abdominal" data-genero="mujer" data-uso="diario" data-precio="89000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/abdomen.webp" alt="Faja abdominal firme — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Abdominal · Mujer · Diario</p>
+                <h3>Faja abdominal firme</h3>
+                <p>Compresión firme para postura y soporte en la rutina diaria.</p>
+                <p class="catalog-card__price">$89.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="2" data-nombre="Faja abdominal men" data-categoria="abdominal" data-genero="hombre" data-uso="diario" data-precio="95000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/men.jpg" alt="Faja abdominal men — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Abdominal · Hombre · Diario</p>
+                <h3>Faja abdominal men</h3>
+                <p>Diseño masculino con soporte estable y tela transpirable.</p>
+                <p class="catalog-card__price">$95.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="3" data-nombre="Faja deportiva high support" data-categoria="deportiva" data-genero="unisex" data-uso="deporte" data-precio="110000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Faja deportiva high support.webp" alt="Faja deportiva high support — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Deportiva · Unisex · Deporte</p>
+                <h3>Faja deportiva high support</h3>
+                <p>Alta sujeción para entrenamiento y actividad física intensa.</p>
+                <p class="catalog-card__price">$110.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="4" data-nombre="Soporte lumbar flexible" data-categoria="lumbar" data-genero="unisex" data-uso="diario" data-precio="78000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Soporte lumbar flexible.jpg" alt="Soporte lumbar flexible — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Lumbar · Unisex · Diario</p>
+                <h3>Soporte lumbar flexible</h3>
+                <p>Estabilidad en la zona baja de la espalda con comodidad diaria.</p>
+                <p class="catalog-card__price">$78.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="5" data-nombre="Chaleco de compresión" data-categoria="chaleco" data-genero="hombre" data-uso="diario" data-precio="125000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Chaleco de compresión.webp" alt="Chaleco de compresión — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Chaleco · Hombre · Diario</p>
+                <h3>Chaleco de compresión</h3>
+                <p>Compresión de torso para comodidad y silueta definida.</p>
+                <p class="catalog-card__price">$125.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="6" data-nombre="Faja postparto" data-categoria="postparto" data-genero="mujer" data-uso="diario" data-precio="99000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Faja postparto.jpg" alt="Faja postparto — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Postparto · Mujer · Diario</p>
+                <h3>Faja postparto</h3>
+                <p>Soporte suave pensado para recuperación y bienestar diario.</p>
+                <p class="catalog-card__price">$99.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="7" data-nombre="Cinturón lumbar deporte" data-categoria="lumbar" data-genero="unisex" data-uso="deporte" data-precio="85000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Cinturón lumbar deporte.webp	" alt="Cinturón lumbar deporte — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Lumbar · Unisex · Deporte</p>
+                <h3>Cinturón lumbar deporte</h3>
+                <p>Refuerzo lumbar para fuerza, funcional y sesiones exigentes.</p>
+                <p class="catalog-card__price">$85.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="8" data-nombre="Short de compresión" data-categoria="short" data-genero="mujer" data-uso="deporte" data-precio="72000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Short de compresión.webp" alt="Short de compresión — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Short / Top · Mujer · Deporte</p>
+                <h3>Short de compresión</h3>
+                <p>Compresión en piernas y glúteos para movimiento y confianza.</p>
+                <p class="catalog-card__price">$72.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="9" data-nombre="Faja media presión" data-categoria="abdominal" data-genero="mujer" data-uso="diario" data-precio="69000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Faja media presión.webp" alt="Faja media presión — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Abdominal · Mujer · Diario</p>
+                <h3>Faja media presión</h3>
+                <p>Compresión moderada ideal para uso prolongado en el día a día.</p>
+                <p class="catalog-card__price">$69.000</p>
+              </div>
+            </article>
+
+            <article class="catalog-card" data-id="10" data-nombre="Top de compresión" data-categoria="short" data-genero="mujer" data-uso="deporte" data-precio="65000">
+              <figure class="catalog-card__media">
+                <img src="assets/productos/Top de compresión.webp" alt="Top de compresión — referencia" width="900" height="1125" loading="lazy" />
+              </figure>
+              <div class="catalog-card__body">
+                <p class="catalog-card__meta">Short / Top · Mujer · Deporte</p>
+                <h3>Top de compresión</h3>
+                <p>Soporte superior para entrenar con comodidad y seguridad.</p>
+                <p class="catalog-card__price">$65.000</p>
+              </div>
+            </article>
+          </div>
+
+          <p class="catalog-empty" id="emptyState" hidden>No hay productos con esos filtros. Prueba otras opciones o limpia los filtros.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section id="nosotros" class="section about-section">
+      <header class="page-hero">
+        <p class="page-hero__brand">VitaSoporte</p>
+        <h2>Nosotros</h2>
+        <p class="page-hero__lead">Soporte que te impulsa. Hoy, bienestar que se nota.</p>
+      </header>
+
+      <div class="about-story">
+        <div class="about-story__copy">
+          <h3>Quiénes somos</h3>
+          <p>
+            En <strong>VitaSoporte</strong> creamos prendas de compresión y soporte
+            para hombres y mujeres, diseñadas para brindar comodidad, bienestar y
+            confianza en el día a día y durante la actividad física.
+          </p>
+          <p>
+            Creemos que el soporte correcto no solo cuida tu cuerpo: te impulsa
+            a sentirte mejor, moverte con seguridad y lucir el bienestar que se nota.
+          </p>
+          <p>
+            Cada faja, chaleco o prenda de soporte nace para acompañarte con
+            sujeción real, sin renunciar a la comodidad que necesitas.
+          </p>
+        </div>
+        <figure class="about-story__visual">
+          <img src="assets/productos/1.jpg" alt="Prenda de soporte VitaSoporte — referencia" width="900" height="1125" loading="lazy" />
+        </figure>
+      </div>
+
+      <div class="about-pillars">
+        <div class="section__intro">
+          <h3>Lo que nos define</h3>
+          <p>Tres pilares en cada prenda que ofrecemos.</p>
+        </div>
+        <div class="pillars-grid">
+          <article class="pillar">
+            <h4>Comodidad</h4>
+            <p>Telas y cortes pensados para usarlos muchas horas sin limitar tu ritmo.</p>
+          </article>
+          <article class="pillar">
+            <h4>Bienestar</h4>
+            <p>Sujeción que ayuda a sentirte en equilibrio en casa, el trabajo o el deporte.</p>
+          </article>
+          <article class="pillar">
+            <h4>Confianza</h4>
+            <p>Cuando tu prenda te sostiene, te mueves con seguridad. Eso se nota.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section id="ubicacion" class="section ubicacion">
+      <header class="page-hero">
+        <p class="page-hero__brand">VitaSoporte</p>
+        <h2>Mi ubicación</h2>
+        <p class="page-hero__lead">Ven a conocernos y prueba el soporte que te impulsa.</p>
+      </header>
+
+      <div class="ubicacion__layout">
+        <div class="ubicacion__info">
+          <p>
+            <strong>Dirección</strong><br />
+            Calle Principal #00-00<br />
+            Tu ciudad, Colombia
+          </p>
+          <p>
+            <strong>Horario</strong><br />
+            Lunes a sábado · 8:00 a. m. – 5:00 p. m.
+          </p>.
+          <p>
+            <strong>Contacto</strong><br />
+            WhatsApp · +57 310 687 8984 <br />
+            vitasoporte@gmail.com
+          </p>
+          <p class="ubicacion__note">
+            Asesoramos fajas abdominales, deportivas, soporte lumbar y prendas
+            de compresión para hombres y mujeres.
+          </p>
+          <a class="btn btn--primary" href="https://maps.google.com/?q=Bogotá" target="_blank" rel="noopener noreferrer">Abrir en Maps</a>
+          <a class="btn btn--outline" href="#productos">Ver productos</a>
+        </div>
+        <div class="ubicacion__map">
+          <iframe
+            title="Ubicación VitaSoporte"
+            src="https://maps.google.com/maps?q=Bogotá&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">VitaSoporte</p>
+    <p>Soporte que te impulsa · Hoy, bienestar que se nota.</p>
+    <nav class="footer-nav" aria-label="Pie de página">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#ubicacion">Mi ubicación</a>
+    </nav>
+  </footer>
+
+  <script src="productos.js" defer></script>
+</body>
+</html>
